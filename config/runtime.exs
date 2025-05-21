@@ -20,6 +20,13 @@ if System.get_env("PHX_SERVER") do
   config :app, AppWeb.Endpoint, server: true
 end
 
+config :app, :strategies,
+  github: [
+    client_id: System.get_env("GITHUB_CLIENT_ID"),
+    client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
+    strategy: Assent.Strategy.Github
+  ]
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||

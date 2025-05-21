@@ -1,18 +1,10 @@
 # App
 
-To start your Phoenix server:
+just a quick prototype for setting up OAuth via GitHub using [Assent].
 
-* Run `mix setup` to install and setup dependencies
-* Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+> [!Note]
+> There's a bunch of obsolete, generated code from `mix phx.gen.auth` that I haven't deleted.
+> View the [diff that contains the relevant changes][diff] instead.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-* Official website: https://www.phoenixframework.org/
-* Guides: https://hexdocs.pm/phoenix/overview.html
-* Docs: https://hexdocs.pm/phoenix
-* Forum: https://elixirforum.com/c/phoenix-forum
-* Source: https://github.com/phoenixframework/phoenix
+[diff]: https://github.com/nocksock/phx-assent-github/compare/diff...main
+[Assent]: https://github.com/pow-auth/assent

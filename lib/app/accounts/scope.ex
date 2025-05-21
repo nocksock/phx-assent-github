@@ -29,5 +29,9 @@ defmodule App.Accounts.Scope do
     %__MODULE__{user: user}
   end
 
+  def from_session_data(%{"email" => email} = user) do
+    %__MODULE__{user: %User{email: email}}
+  end
+
   def for_user(nil), do: nil
 end

@@ -3,6 +3,11 @@ defmodule AppWeb.Router do
 
   import AppWeb.UserAuth
 
+  pipeline :is_authenticated do
+    plug AppWeb.Plugs.RequireAuth
+    plug AppWeb.Plugs.SetScope
+  end
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -20,7 +25,21 @@ defmodule AppWeb.Router do
   scope "/", AppWeb do
     pipe_through :browser
 
+    get "/login", AuthController, :login_page
+    delete "/logout", AuthController, :logout
+  end
+
+  scope "/auth", AppWeb do
+    pipe_through :browser
+
+    get "/github", GithubAuth, :request
+    get "/github/callback", GithubAuth, :callback
+  end
+
+  scope "/", AppWeb do
+    pipe_through [:browser, :is_authenticated]
     get "/", PageController, :home
+    get "/details", AuthController, :details
   end
 
   # Other scopes may use custom stacks.
@@ -38,7 +57,7 @@ defmodule AppWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
-      pipe_through :browser
+      pipe_through [:browser, :is_authenticated]
 
       live_dashboard "/dashboard", metrics: AppWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview

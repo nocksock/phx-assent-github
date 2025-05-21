@@ -33,6 +33,7 @@ defmodule App.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:assent, "~> 0.3.0"},
       {:bcrypt_elixir, "~> 3.0"},
       {:phoenix, "~> 1.8.0-rc.3", override: true},
       {:phoenix_ecto, "~> 4.5"},
